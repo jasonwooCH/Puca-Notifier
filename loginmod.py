@@ -1,20 +1,15 @@
-import urllib
-import urllib2
-import re
-from cookielib import CookieJar
-
-cj = CookieJar()
-opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+import requests
 
 login_data = {
     "login":"homieplace@twc.com",
     "password":"pucabruin",
 }
 
-encoded_login = urllib.urlencode(login_data)
+session = requests.Session()
 
-response = opener.open("https://pucatrade.com/login", encoded_login)
+session.post("https://pucatrade.com/login", data = login_data)
 
-# test
-# print re.findall("Dashboard" , response.read())
+#test
+r = session.get("https://pucatrade.com/dashboard")
 
+print r.text
