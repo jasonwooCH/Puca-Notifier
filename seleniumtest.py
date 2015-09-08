@@ -41,17 +41,16 @@ country_xpath = '//*[@id="content-wrapper"]/div[2]/div[2]/div/div[1]/button'
 country_element = driver.find_element_by_xpath(country_xpath)
 country_element.click()
 
-### this needs work - none_element is not visible
-none_xpath = '//*[@id="flag-all"]'
+none_xpath = '//*[@id="flag-all"][2]'
 none_element = driver.find_element_by_xpath(none_xpath)
 none_element.click()
 usa_xpath = '//*[@id="flag-71"]'
 usa_element = driver.find_element_by_xpath(usa_xpath)
 usa_element.click()
-###
+country_element.click()
 
-table_class = "card-table card-list-table dataTables_wrapper"
-card_table = driver.find_element_by_class_name(table_class)
+# table_class = "card-table card-list-table dataTables_wrapper"
+# card_table = driver.find_element_by_class_name(table_class)
 
 
 # driver.quit()
