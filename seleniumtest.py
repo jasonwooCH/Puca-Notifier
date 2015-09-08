@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
+import re
+
 driver = webdriver.Chrome()
 
 driver.get("https://pucatrade.com")
@@ -25,3 +27,31 @@ user_fieldelement.send_keys(puca_username)
 pass_fieldelement.clear()
 pass_fieldelement.send_keys(puca_password)
 login_btnelement.click()  # clicks the element
+
+# access a page that requires you to be logged on
+driver.get("https://pucatrade.com/trades")
+
+# need to select the auto-match button to show only the cards we have
+match_xpath = '//*[@id="content-wrapper"]/div[2]/div[3]/div[1]/label'
+match_element = driver.find_element_by_xpath(match_xpath)
+match_element.click()
+
+# need to filter countries
+country_xpath = '//*[@id="content-wrapper"]/div[2]/div[2]/div/div[1]/button'
+country_element = driver.find_element_by_xpath(country_xpath)
+country_element.click()
+
+### this needs work - none_element is not visible
+none_xpath = '//*[@id="flag-all"]'
+none_element = driver.find_element_by_xpath(none_xpath)
+none_element.click()
+usa_xpath = '//*[@id="flag-71"]'
+usa_element = driver.find_element_by_xpath(usa_xpath)
+usa_element.click()
+###
+
+table_class = "card-table card-list-table dataTables_wrapper"
+card_table = driver.find_element_by_class_name(table_class)
+
+
+# driver.quit()
